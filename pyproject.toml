@@ -12,6 +12,81 @@ motor = "^3.6.0"
 uvicorn = {extras = ["all"], version = "^0.31.0"}
 
 
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.8.0"
+black = "^24.8.0"
+isort = "^5.13.2"
+docutils = "^0.21.2"
+wemake-python-styleguide = "^0.19.2"
+flake8-html = "^0.4.3"
+pyproject-flake8 = "^7.0.0"
+mypy = "^1.11.2"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 120
+exclude = """
+(
+    .venv
+    | venv
+    | flake-report
+)
+"""
+
+
+[tool.isort]
+profile = "wemake"
+default_section = "THIRDPARTY"
+known_first_party = "wemake_python_styleguide*"
+skip_glob = ["**/__pycache__", ".venv", "venv", ".chroma", "flake-report"]
+line_length = 120
+
+
+[tool.flake8]
+format = "wemake"
+show-source = true
+statistics = "false"
+doctests = true
+select = "C,E,F,W,B,B950"
+ignore = """
+C812,C815,C816,C408,C901,\
+F821,\
+W503,\
+WPS100,WPS110,WPS114,WPS115,\
+WPS201,WPS202,WPS203,WPS210,WPS211,WPS213,WPS214,WPS215,WPS216,WPS219,WPS220,WPS221,WPS222,WPS226,WPS230,WPS231,WPS235,WPS237,\
+WPS305,WPS306,WPS318,WPS319,WPS320,WPS332,WPS337,WPS347,WPS348,\
+WPS400,WPS402,WPS404,WPS407,WPS410,WPS412,WPS421,WPS425,WPS430,WPS432,WPS442,WPS462,WPS463,\
+WPS501,WPS503,WPS510,\
+WPS601,WPS602,WPS615
+"""
+max-line-length = 120
+strictness = "long"
+docstring-style = "numpy"
+exclude = ["**/__pycache__", ".venv", "venv", "flake-report", "tests/**"]
+extend-immutable-calls = "fastapi.Depends, fastapi.params.Depends, Depends, Body"
+per-file-ignores = ["**/__init__.py:WPS300"]
+inline-quotes = "\""
+
+
+[tool.mypy]
+python_version = 3.12
+check_untyped_defs = true
+namespace_packages = true
+plugins = ["pydantic.mypy"]
+pretty = true
+show_error_context = true
+exclude = """
+(
+    .venv
+    | venv
+    | flake-report
+)
+"""
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
