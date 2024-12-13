@@ -11,6 +11,7 @@ python = "^3.12"
 fastapi = "^0.115.0"
 motor = "^3.6.0"
 uvicorn = {extras = ["all"], version = "^0.31.0"}
+ipython = "^8.30.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -22,6 +23,7 @@ wemake-python-styleguide = "^0.19.2"
 flake8-html = "^0.4.3"
 pyproject-flake8 = "^7.0.0"
 mypy = "^1.11.2"
+pytest = "^8.3.4"
 
 [build-system]
 requires = ["poetry-core"]
@@ -54,7 +56,9 @@ statistics = "false"
 doctests = true
 select = "C,E,F,W,B,B950"
 ignore = """
+B024,
 C812,C815,C816,C408,C901,\
+E704,\
 F821,\
 W503,\
 WPS100,WPS110,WPS114,WPS115,\
@@ -67,7 +71,7 @@ WPS601,WPS602,WPS615
 max-line-length = 120
 strictness = "long"
 docstring-style = "numpy"
-exclude = ["**/__pycache__", ".venv", "venv", "flake-report", "tests/**"]
+exclude = ["**/__pycache__", ".venv", "venv", "flake-report", "**/tests/**"]
 extend-immutable-calls = "fastapi.Depends, fastapi.params.Depends, Depends, Body"
 per-file-ignores = ["**/__init__.py:WPS300"]
 inline-quotes = "\""
@@ -89,5 +93,5 @@ exclude = """
 """
 
 [[tool.mypy.overrides]]
-module = "tests.*"
+module = "**/tests.*"
 ignore_errors = true
