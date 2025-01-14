@@ -28,7 +28,7 @@ repos:
 
       - id: mypy
         name: mypy
-        entry: mypy --config-file=./pyproject.toml ./app
+        entry: bash -c "mypy --config-file=./pyproject.toml ./app"
         require_serial: true
         language: python
         types: [ python ]
