@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "web-chat"
 version = "0.1.0"
-description = ""
+description = "Web chat based on FastAPI, Kafka and Websockets."
 authors = ["Daniil Nizdolin <nizdolin@gmail.com>"]
 readme = "README.md"
 package-mode = false

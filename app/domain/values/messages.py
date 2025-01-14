@@ -8,11 +8,11 @@ from domain.values.base import BaseValueObject
 class Text(BaseValueObject):
     value: str
 
-    def validate(self):
+    def validate(self) -> None:
         if not self.value:
             raise EmptyTextException()
 
-    def as_generic_type(self):
+    def as_generic_type(self) -> str:
         return self.value
 
 
@@ -20,7 +20,7 @@ class Text(BaseValueObject):
 class Title(Text):
     MAX_LENGTH = 255
 
-    def validate(self):
+    def validate(self) -> None:
         super().validate()
         if len(self.value) > self.MAX_LENGTH:
             raise TitleTooLongException(self.value, self.MAX_LENGTH)
