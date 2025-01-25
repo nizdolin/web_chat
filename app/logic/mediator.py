@@ -1,6 +1,7 @@
 from collections import defaultdict
 from collections.abc import Iterable
 from dataclasses import dataclass, field
+from typing import Sequence
 
 from domain.events.base import BaseEvent
 from logic.commands.base import CR, CT, BaseCommand, CommandHandler
@@ -27,7 +28,7 @@ class Mediator:
 
         return [await handler.handle(event) for handler in handlers]
 
-    async def handle_command(self, command: BaseCommand) -> Iterable[CR]:
+    async def handle_command(self, command: BaseCommand) -> Sequence[CR]:
         command_type = command.__class__
         handlers = self.events_map.get(command_type)
         if not handlers:

@@ -1,12 +1,10 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
-from typing import Any, Generic, TypeVar
-
-VT = TypeVar("VT", bound=Any)
+from typing import Any
 
 
 @dataclass(frozen=True)
-class BaseValueObject(ABC, Generic[VT]):
+class BaseValueObject[VT: Any](ABC):
     value: VT
 
     def __post_init__(self) -> None:
