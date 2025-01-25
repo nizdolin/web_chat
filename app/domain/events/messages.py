@@ -13,4 +13,4 @@ class NewMessageReceivedEvent(BaseEvent):
 @dataclass
 class NewChatCreatedEvent(BaseEvent):
     chat_id: str
-    title: str
+    chat_title: str

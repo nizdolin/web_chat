@@ -21,7 +21,8 @@ class Chat(BaseEntity):
     @classmethod
     def create(cls, title: Title) -> "Chat":
         new_chat = cls(title=title)
-        new_chat.register_event(NewChatCreatedEvent(chat_id=new_chat.id, title=new_chat.title.as_generic_type()))
+        new_chat.register_event(NewChatCreatedEvent(chat_id=new_chat.id, chat_title=new_chat.title.as_generic_type()))
+        return new_chat
 
     def add_message(self, message: Message):
         self.messages.add(message)

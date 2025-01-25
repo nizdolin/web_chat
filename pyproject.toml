@@ -13,6 +13,7 @@ motor = "^3.6.0"
 uvicorn = {extras = ["all"], version = "^0.31.0"}
 ipython = "^8.30.0"
 pytest-asyncio = "^0.25.2"
+faker = "^35.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -23,7 +24,6 @@ docutils = "^0.21.2"
 wemake-python-styleguide = "^0.19.2"
 flake8-html = "^0.4.3"
 pyproject-flake8 = "^7.0.0"
-mypy = "^1.11.2"
 pytest = "^8.3.4"
 
 [build-system]
@@ -76,23 +76,3 @@ exclude = ["**/__pycache__", ".venv", "venv", "flake-report", "**/tests/**"]
 extend-immutable-calls = "fastapi.Depends, fastapi.params.Depends, Depends, Body"
 per-file-ignores = ["**/__init__.py:WPS300"]
 inline-quotes = "\""
-
-
-[tool.mypy]
-python_version = 3.12
-check_untyped_defs = true
-namespace_packages = true
-plugins = ["pydantic.mypy"]
-pretty = true
-show_error_context = true
-exclude = """
-(
-    .venv
-    | venv
-    | flake-report
-)
-"""
-
-[[tool.mypy.overrides]]
-module = "**/tests.*"
-ignore_errors = true
