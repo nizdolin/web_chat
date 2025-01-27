@@ -10,7 +10,8 @@ from logic.mediator import Mediator
 
 @pytest.mark.asyncio
 async def test_create_chat_command_success(chat_repository: BaseChatRepository, mediator: Mediator, faker: Faker):
-    chat = (await mediator.handle_command(CreateChatCommand(title=faker.text(max_nb_chars=Title.MAX_LENGTH))))[0]
+    chat: Chat
+    chat, *_ = await mediator.handle_command(CreateChatCommand(title=faker.text(max_nb_chars=Title.MAX_LENGTH)))
 
     assert await chat_repository.check_chat_exists_by_title(title=chat.title.as_generic_type())
 
