@@ -12,9 +12,8 @@ fastapi = "^0.115.0"
 motor = "^3.6.0"
 uvicorn = {extras = ["all"], version = "^0.31.0"}
 ipython = "^8.30.0"
-pytest-asyncio = "^0.25.2"
-faker = "^35.0.0"
 punq = "^0.7.0"
+httpx = "^0.28.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -26,6 +25,8 @@ wemake-python-styleguide = "^0.19.2"
 flake8-html = "^0.4.3"
 pyproject-flake8 = "^7.0.0"
 pytest = "^8.3.4"
+pytest-asyncio = "^0.25.2"
+faker = "^35.0.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -77,3 +78,7 @@ exclude = ["**/__pycache__", ".venv", "venv", "flake-report", "**/tests/**"]
 extend-immutable-calls = "fastapi.Depends, fastapi.params.Depends, Depends, Body"
 per-file-ignores = ["**/__init__.py:WPS300"]
 inline-quotes = "\""
+
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"
