@@ -155,7 +155,7 @@ cython_debug/
 .vscode/
 
 # Poetry
-poetry.lock
+*.lock
 
 # Flake
 flake-report
