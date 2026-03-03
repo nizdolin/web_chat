@@ -1,36 +1,39 @@
-[tool.poetry]
+[project]
 name = "web-chat"
 version = "0.1.0"
 description = "Web chat based on FastAPI, Kafka and Websockets."
-authors = ["Daniil Nizdolin <nizdolin@gmail.com>"]
+authors = [{ name = "Daniil Nizdolin", email = "nizdolin@gmail.com" }]
+requires-python = ">=3.13,<4"
 readme = "README.md"
-package-mode = false
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+    "fastapi>=0.135.1",
+    "httpx>=0.28.1",
+    "motor>=3.7.1",
+    "punq>=0.7.0",
+    "uvicorn>=0.41.0",
+    "websockets>=16.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.12"
-fastapi = "^0.115.0"
-motor = "^3.6.0"
-uvicorn = {extras = ["all"], version = "^0.31.0"}
-ipython = "^8.30.0"
-punq = "^0.7.0"
-httpx = "^0.28.1"
+[dependency-groups]
+dev = [
+    "ipython>=9.10.0",
+    "pytest>=9.0.2",
+    "pytest-asyncio>=1.3.0",
+]
 
-
-[tool.poetry.group.dev.dependencies]
-pre-commit = "^3.8.0"
-black = "^24.8.0"
-isort = "^5.13.2"
-docutils = "^0.21.2"
-wemake-python-styleguide = "^0.19.2"
-flake8-html = "^0.4.3"
-pyproject-flake8 = "^7.0.0"
-pytest = "^8.3.4"
-pytest-asyncio = "^0.25.2"
-faker = "^35.0.0"
+[tool.uv]
+package = false
+default-groups = "all"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.10.7,<0.11.0"]
+build-backend = "uv_build"
 
 
 [tool.black]

@@ -8,7 +8,6 @@ htmlcov
 venv
 .venv
 __pycache__
-poetry.lock
 flake-report
 **.mo
 **.ipynb
